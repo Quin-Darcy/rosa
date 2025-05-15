@@ -6,11 +6,12 @@
  */
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 /// Enum defining errors specific to split/recombine operations
 pub enum SplitterError {
     /// Error indicating provided path does not resolve to file
-    NotFileError,    
-    
+    NotFileError,   
+
     /// Error indicating invalid number of ROs provided
     InvalidRoError,
 
