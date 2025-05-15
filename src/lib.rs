@@ -19,7 +19,8 @@
 //! # Example
 //!
 //! ```
-//! use rosa::RoSplitter;
+//! use std::path::PathBuf;
+//! use rosa::splitter::RoSplitter;
 //!
 //!
 //! const BINARY_FILE: &str = "/path/to/file.txt";
@@ -27,7 +28,7 @@
 //!
 //! fn main() {
 //!     // Create instance of RoSplitter
-//!     let split = RoSplitter::new(BINARY_FILE, NUM_ROS);
+//!     let split = RoSplitter::new(PathBuf::from(BINARY_FILE), NUM_ROS);
 //! }
 
 /// Module containing enums for each module-specific error types
