@@ -13,6 +13,12 @@ pub enum SplitterError {
     
     /// Error indicating invalid number of ROs provided
     InvalidRoError,
+
+    /// Error indicating file size is not divisible by number of ROs
+    InvalidSizeError,
+
+    /// Error indicating call to metadata failed
+    MetadataError,
 }
 
 impl std::error::Error for SplitterError {}
@@ -25,6 +31,12 @@ impl std::fmt::Display for SplitterError {
             },
             SplitterError::InvalidRoError => {
                 write!(f, "Number of ROs must be greater than zero")
+            },
+            SplitterError::InvalidSizeError => {
+                write!(f, "File size not divisible by number of ROs")
+            },
+            SplitterError::MetadataError => {
+                write!(f, "Failed to fetch metadata on given file")
             },
 		}
 	}

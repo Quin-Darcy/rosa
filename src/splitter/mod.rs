@@ -12,7 +12,9 @@ use crate::error::SplitterError;
 /// Main struct for processing binary files
 pub struct RoSplitter {
     file_path: PathBuf,
-    num_ros: usize
+    num_ros: usize,
+    /// Size of the file in bits
+    pub size: u64,
 }
 
 impl RoSplitter {
@@ -35,6 +37,17 @@ impl RoSplitter {
             return Err(SplitterError::NotFileError);
         }
 
+        // Attempt to get size in bits
+        let bits = match file_path.metadata() {
+            Ok(md) => md.len() * 8,
+            Err(_) => return Err(SplitterError::MetadataError),
+        };
+
+        // Check size is divisible by ROs
+        if bits % ros as u64 != 0 {
+            return Err(SplitterError::InvalidSizeError);
+        }
+
         // Check if valid RO number given
         if ros == 0 {
             return Err(SplitterError::InvalidRoError);
@@ -42,6 +55,7 @@ impl RoSplitter {
 
         let split = RoSplitter {
             file_path,
+            size: bits,
             num_ros: ros
         };
 
