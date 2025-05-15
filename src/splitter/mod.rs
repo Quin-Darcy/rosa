@@ -13,8 +13,7 @@ use crate::error::SplitterError;
 pub struct RoSplitter {
     file_path: PathBuf,
     num_ros: usize,
-    /// Size of the file in bits
-    pub size: u64,
+    size: u64,
 }
 
 impl RoSplitter {
@@ -53,12 +52,12 @@ impl RoSplitter {
             return Err(SplitterError::InvalidRoError);
         }
 
-        let split = RoSplitter {
+        let spliter = RoSplitter {
             file_path,
             size: bits,
             num_ros: ros
         };
 
-        Ok(split)
+        Ok(splitter)
     }
 }
