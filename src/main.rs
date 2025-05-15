@@ -13,4 +13,6 @@ fn main () {
             process::exit(1);
         }
     };
+
+    println!("Size of file: {}", ro_split.size);
 }
